@@ -45,3 +45,8 @@ EDP-Platform-Portable
 ```
 
 See [DEPENDENCY_GRAPH.MD](./DEPENDENCY_GRAPH.MD).
+
+
+## Demos
+
+Buildable demonstrations are provided under [`./demos`](./demos) for the Portable atomic and synchronization providers.
