@@ -2,7 +2,7 @@
 
 `EDP-Platform-Portable` contains concrete `EDP-Platform` providers implemented entirely with portable Standard C++ facilities.
 
-It contains no Arduino, ESP-IDF or FreeRTOS implementation code.
+It contains no Arduino, ESP-IDF, or FreeRTOS implementation code.
 
 ## Providers
 
@@ -18,23 +18,15 @@ Signal
 SpinLock
 ```
 
-`ExecutionContext` is intentionally **not** provided.
+`ExecutionContext` is intentionally not provided because portable `std::thread` cannot satisfy the Platform requirement for caller-supplied native control and stack storage.
 
-The mandated Platform execution contract requires caller-supplied stack and native control storage. `std::thread` does not expose a portable mechanism satisfying that contract, so this repository does not claim the capability.
+## Documentation
 
-## Interrupt Context
+- [AtomicWord32 Provider](./docs/ATOMIC-WORD-32.MD)  
+  Defines the lock-free four-byte Standard C++ atomic provider and its exact memory-order surface.
 
-Standard C++ defines no portable ISR/interrupt execution model.
-
-Therefore:
-
-```text
-CountingSemaphore interrupt release    unsupported
-Signal interrupt notification          unsupported
-SpinLock interrupt operations          unsupported
-```
-
-These limitations are advertised through Platform Composition properties.
+- [Synchronization Providers](./docs/SYNCHRONIZATION.MD)  
+  Defines the Standard C++ mutex, reader/writer lock, counting semaphore, signal, and spin-lock providers, including timeout, failure, interrupt, and resource semantics.
 
 ## Dependencies
 
@@ -44,8 +36,9 @@ EDP-Platform-Portable
     └── EDP-System [transitive]
 ```
 
-See [DEPENDENCY_GRAPH.MD](./DEPENDENCY_GRAPH.MD).
+There are no optional ESPressio library dependencies.
 
+See [DEPENDENCY_GRAPH.MD](./DEPENDENCY_GRAPH.MD).
 
 ## Demos
 
