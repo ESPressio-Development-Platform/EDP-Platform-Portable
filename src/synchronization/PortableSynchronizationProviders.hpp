@@ -631,15 +631,6 @@ namespace ESPressio::Platform::Portable::Synchronization {
                 }
             }
 
-            /// Attempts one immediate lock acquisition.
-            ESPressio::Platform::Synchronization::SpinLockTryAcquireResult TryAcquire() noexcept {
-                return _flag.test_and_set(
-                    std::memory_order_acquire
-                )
-                    ? ESPressio::Platform::Synchronization::SpinLockTryAcquireResult::Busy
-                    : ESPressio::Platform::Synchronization::SpinLockTryAcquireResult::Acquired;
-            }
-
             /// Releases the spin lock.
             ESPressio::Platform::Synchronization::SpinLockReleaseResult Release() noexcept {
                 _flag.clear(
@@ -653,8 +644,8 @@ namespace ESPressio::Platform::Portable::Synchronization {
             // Interrupt-context operations.
 
             /// Reports that Standard C++ has no portable interrupt-context acquisition contract.
-            ESPressio::Platform::Synchronization::SpinLockTryAcquireResult TryAcquireFromInterrupt() noexcept {
-                return ESPressio::Platform::Synchronization::SpinLockTryAcquireResult::UnsupportedInterruptContext;
+            ESPressio::Platform::Synchronization::SpinLockAcquireResult AcquireFromInterrupt() noexcept {
+                return ESPressio::Platform::Synchronization::SpinLockAcquireResult::UnsupportedInterruptContext;
             }
 
             /// Reports that Standard C++ has no portable interrupt-context release contract.
