@@ -13,34 +13,28 @@ if(NOT DEFINED EDP_SYSTEM_SOURCE_DIR)
     message(FATAL_ERROR "EDP_SYSTEM_SOURCE_DIR must point at an EDP-System checkout")
 endif()
 
+if(NOT DEFINED EDP_MEMORY_SOURCE_DIR)
+    message(FATAL_ERROR "EDP_MEMORY_SOURCE_DIR must point at an EDP-Memory checkout")
+endif()
+
 find_package(Threads REQUIRED)
 
-add_executable(
-    portable_provider_tests
-    PortableProviderTests.cpp
-)
+add_executable(portable_provider_tests PortableProviderTests.cpp)
+add_executable(portable_memory_provider_tests PortableMemoryProviderTests.cpp)
 
-target_include_directories(
-    portable_provider_tests
-    PRIVATE
-        ../src
-        ${EDP_PLATFORM_SOURCE_DIR}/src
-        ${EDP_SYSTEM_SOURCE_DIR}/src
-)
-
-target_link_libraries(
-    portable_provider_tests
-    PRIVATE
-        Threads::Threads
-)
-
-if(CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang")
-    target_compile_options(
-        portable_provider_tests
+foreach(target portable_provider_tests portable_memory_provider_tests)
+    target_include_directories(
+        ${target}
         PRIVATE
-            -Wall
-            -Wextra
-            -Wpedantic
-            -Werror
+            ../src
+            ${EDP_PLATFORM_SOURCE_DIR}/src
+            ${EDP_SYSTEM_SOURCE_DIR}/src
+            ${EDP_MEMORY_SOURCE_DIR}/src
     )
-endif()
+
+    target_link_libraries(${target} PRIVATE Threads::Threads)
+
+    if(CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang")
+        target_compile_options(${target} PRIVATE -Wall -Wextra -Wpedantic -Werror)
+    endif()
+endforeach()

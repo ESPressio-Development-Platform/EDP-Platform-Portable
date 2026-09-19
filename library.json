@@ -1,7 +1,7 @@
 {
   "name": "EDP-Platform-Portable",
-  "description": "Portable Standard C++ concrete providers for EDP-Platform",
-  "keywords": "espressio,platform,portable,standard-cpp,mutex,semaphore,signal,atomic",
+  "description": "Portable Standard C++ concrete providers for EDP-Platform and EDP-Memory",
+  "keywords": "espressio,platform,portable,standard-cpp,mutex,semaphore,signal,atomic,memory",
   "homepage": "https://espressio.org",
   "authors": {
     "name": "Simon J. Stuart",
@@ -9,8 +9,12 @@
     "url": "https://espressio.org"
   },
   "build": {
-    "flags": ["-std=gnu++17"],
-    "unflags": ["-std=gnu++11"]
+    "flags": [
+      "-std=gnu++17"
+    ],
+    "unflags": [
+      "-std=gnu++11"
+    ]
   },
   "repository": {
     "type": "git",
@@ -24,6 +28,11 @@
     {
       "name": "EDP-Platform",
       "version": "https://github.com/ESPressio-Development-Platform/EDP-Platform.git#main",
+      "platforms": "*"
+    },
+    {
+      "name": "EDP-Memory",
+      "version": "https://github.com/ESPressio-Development-Platform/EDP-Memory.git#main",
       "platforms": "*"
     }
   ]
