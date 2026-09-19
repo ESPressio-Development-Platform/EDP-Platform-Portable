@@ -1,5 +1,6 @@
 #pragma once
 
+#include "concurrency/AtomicWord8Provider.hpp"
 #include "concurrency/AtomicWord32Provider.hpp"
 #include "memory/ByteOperationsProvider.hpp"
 #include "memory/MemoryResourceProvider.hpp"
