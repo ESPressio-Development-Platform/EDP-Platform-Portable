@@ -20,6 +20,8 @@ namespace ESPressio::Platform::Portable::Memory {
 
         public:
 
+            // Byte operations.
+
             /// Copies one non-overlapping byte range.
             void CopyBytes(
                 void* destination,

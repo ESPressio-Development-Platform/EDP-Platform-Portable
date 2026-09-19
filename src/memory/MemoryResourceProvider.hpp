@@ -19,6 +19,8 @@ namespace ESPressio::Platform::Portable::Memory {
 
         private:
 
+            // Alignment helpers.
+
             /// Reports whether a non-zero integer is a power of two.
             static constexpr bool IsPowerOfTwo(
                 std::size_t value
@@ -36,6 +38,8 @@ namespace ESPressio::Platform::Portable::Memory {
             }
 
         public:
+
+            // Resource operations.
 
             /// Allocates one aligned raw byte block using C++17 nothrow aligned operator new.
             ESPressio::Memory::MemoryAllocationResult Allocate(

@@ -56,7 +56,8 @@ namespace Test {
             0x5AU,
             target.size()
         );
-        for (const auto value : target) { assert(value == 0x5AU); }
+        for (const auto value : target)
+            assert(value == 0x5AU);
 
         bytes.CopyBytes(nullptr, nullptr, 0U);
         bytes.MoveBytes(nullptr, nullptr, 0U);
