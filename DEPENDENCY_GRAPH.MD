@@ -27,4 +27,4 @@ EDP-Platform-Portable
 
 The dependency remains acyclic because `EDP-Memory` never depends on this concrete provider repository. Application Bootstrap selects these providers through Composition.
 
-> Revalidated 2026-09-19: AtomicWord8 Standard C++ provider introduces no new ESPressio-library dependency.
+> Revalidated 2026-09-20: removal of the rejected AtomicWord8 experiment introduces no dependency change.
