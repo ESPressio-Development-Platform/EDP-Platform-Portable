@@ -25,7 +25,6 @@ EDP-Memory
 
 ## Documentation
 
-- [AtomicWord8 Provider](./docs/ATOMIC-WORD-8.MD) — one-byte lock-free atomic control words.
 - [AtomicWord32 Provider](./docs/ATOMIC-WORD-32.MD) — lock-free four-byte Standard C++ atomic provider.
 - [Synchronization Providers](./docs/SYNCHRONIZATION.MD) — Standard C++ synchronization providers and their timeout/failure/interrupt semantics.
 - [Memory Providers](./docs/MEMORY-PROVIDERS.MD) — Standard C/C++ ByteOperations and C++17 aligned nothrow MemoryResource providers.
