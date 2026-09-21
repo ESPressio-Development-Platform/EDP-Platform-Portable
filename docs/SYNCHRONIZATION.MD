@@ -15,7 +15,7 @@ Signal
 SpinLock
 ```
 
-These implementations use only C++17 standard-library facilities and contain no Arduino, ESP-IDF, or FreeRTOS API calls.
+These implementations use only portable C++20 standard-library facilities and contain no Arduino, ESP-IDF, or FreeRTOS API calls.
 
 ## Composition contract
 
@@ -81,12 +81,14 @@ The fairness policy of `std::shared_timed_mutex` is implementation-defined by th
 
 ## CountingSemaphore
 
-C++17 has no standard counting semaphore, so the provider implements the Platform contract from:
+C++20 provides `std::counting_semaphore`, but that Type fixes its least maximum count as a template argument. The EDP Platform contract instead accepts the maximum count at runtime and requires release-at-capacity to return `CapacityReached` rather than violate an underlying semaphore precondition.
+
+The Portable provider therefore deliberately implements the Platform contract from:
 
 ```text
 std::mutex
 std::condition_variable
-fixed maximum/count state
+runtime maximum/count state
 ```
 
 `Initialize(maximum, initial)` rejects:
@@ -147,7 +149,7 @@ Caller contract violations that are undefined behavior under the underlying Stan
 
 The ESPressio provider objects own their Standard C++ synchronization objects directly and introduce no ESPressio registry, worker thread, or callback collection.
 
-However, C++17 does not require the implementation internals of `std::mutex`, `std::condition_variable`, `std::shared_timed_mutex`, or related runtime facilities to be allocation-free or represented entirely inline.
+However, C++20 does not require the implementation internals of `std::mutex`, `std::condition_variable`, `std::shared_timed_mutex`, or related runtime facilities to be allocation-free or represented entirely inline.
 
 Therefore this Portable backend does **not** claim the deterministic static native-resource guarantees provided by the FreeRTOS static providers. Its resource behavior beyond the visible provider members is implementation-defined by the selected Standard Library and host runtime.
 
@@ -157,6 +159,6 @@ Applications with strict native storage or embedded real-time requirements shoul
 
 The Platform `ExecutionContext` contract requires caller-supplied native control and stack storage.
 
-Portable `std::thread` does not expose a C++17 mechanism to provide and own those native storage regions. Implementing an `ExecutionContext` provider here would therefore weaken the abstraction contract.
+Portable C++20 `std::thread` still does not expose a mechanism to provide and own those native storage regions. Implementing an `ExecutionContext` provider here would therefore weaken the abstraction contract.
 
 The capability is intentionally not offered rather than pretending `std::thread` satisfies requirements it cannot portably satisfy.
