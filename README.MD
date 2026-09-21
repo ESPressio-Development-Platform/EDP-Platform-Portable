@@ -27,7 +27,7 @@ EDP-Memory
 
 - [AtomicWord32 Provider](./docs/ATOMIC-WORD-32.MD) — lock-free four-byte Standard C++ atomic provider.
 - [Synchronization Providers](./docs/SYNCHRONIZATION.MD) — Standard C++ synchronization providers and their timeout/failure/interrupt semantics.
-- [Memory Providers](./docs/MEMORY-PROVIDERS.MD) — Standard C/C++ ByteOperations and C++17 aligned nothrow MemoryResource providers.
+- [Memory Providers](./docs/MEMORY-PROVIDERS.MD) — Standard C/C++ ByteOperations and C++20-aligned nothrow MemoryResource providers.
 
 ## Dependencies
 
@@ -51,3 +51,7 @@ Buildable demonstrations are provided under [`./demos`](./demos) for Portable at
 ## Testing
 
 Host tests cover the Platform providers plus the Memory byte/resource provider contracts and behavior. Portable Memory providers are suitable for host sanitizer validation because they use only Standard C/C++ facilities.
+
+## C++ Language Baseline
+
+ESPressio requires C++20. PlatformIO-compatible ESP32 demos use the maintained PIOArduino platform package so Arduino-ESP32 and ESP-IDF builds share a current C++20-capable baseline.
