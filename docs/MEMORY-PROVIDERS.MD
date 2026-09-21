@@ -21,7 +21,7 @@ The provider performs no allocation, synchronization, object construction, objec
 
 ## MemoryResourceProvider
 
-`Portable::Memory::MemoryResourceProvider` uses C++17 nothrow aligned `operator new` and matching aligned `operator delete`.
+`Portable::Memory::MemoryResourceProvider` uses the C++20 Standard Library's nothrow aligned `operator new` and matching aligned `operator delete`.
 
 Allocation requires a non-zero byte count and a non-zero power-of-two requested alignment. Requests below `alignof(std::max_align_t)` are normalized upward because the concrete aligned allocation still satisfies the caller's weaker requirement. `MemoryBlock::Alignment` records the actual alignment used for matching release.
 
