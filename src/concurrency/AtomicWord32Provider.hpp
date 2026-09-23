@@ -12,7 +12,7 @@ namespace ESPressio::Platform::Portable::Concurrency {
     /// Standard C++ provider for the Platform AtomicWord32 capability.
     class AtomicWord32Provider final : public Framework::Provider<
         ESPressio::Platform::Domain,
-        Framework::Provides<
+        Framework::Offers<
             Framework::Offer<
                 ESPressio::Platform::Concurrency::AtomicWord32,
                 Framework::PropertyValue<ESPressio::Platform::Concurrency::LockFree, true>,

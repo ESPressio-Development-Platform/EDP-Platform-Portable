@@ -12,7 +12,7 @@ namespace ESPressio::Platform::Portable::Memory {
     /// Standard C++17 aligned nothrow raw-memory resource.
     class MemoryResourceProvider final : public Framework::Provider<
         ESPressio::Memory::Domain,
-        Framework::Provides<
+        Framework::Offers<
             Framework::Offer<ESPressio::Memory::MemoryResource>
         >
     > {
