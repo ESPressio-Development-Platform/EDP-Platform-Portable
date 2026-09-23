@@ -13,7 +13,7 @@ namespace ESPressio::Platform::Portable::Memory {
     /// Standard C/C++ implementation of the EDP-Memory ByteOperations capability.
     class ByteOperationsProvider final : public Framework::Provider<
         ESPressio::Memory::Domain,
-        Framework::Provides<
+        Framework::Offers<
             Framework::Offer<ESPressio::Memory::ByteOperations>
         >
     > {

@@ -56,7 +56,7 @@ namespace ESPressio::Platform::Portable::Synchronization {
     /// Standard C++ timed-mutex provider.
     class MutexProvider final : public Framework::Provider<
         ESPressio::Platform::Domain,
-        Framework::Provides<
+        Framework::Offers<
             Framework::Offer<
                 ESPressio::Platform::Synchronization::Mutex,
                 Framework::PropertyValue<
@@ -122,7 +122,7 @@ namespace ESPressio::Platform::Portable::Synchronization {
     /// Standard C++ recursive timed-mutex provider.
     class RecursiveMutexProvider final : public Framework::Provider<
         ESPressio::Platform::Domain,
-        Framework::Provides<
+        Framework::Offers<
             Framework::Offer<
                 ESPressio::Platform::Synchronization::RecursiveMutex,
                 Framework::PropertyValue<
@@ -188,7 +188,7 @@ namespace ESPressio::Platform::Portable::Synchronization {
     /// Standard C++ shared timed-mutex provider.
     class ReadWriteMutexProvider final : public Framework::Provider<
         ESPressio::Platform::Domain,
-        Framework::Provides<
+        Framework::Offers<
             Framework::Offer<
                 ESPressio::Platform::Synchronization::ReadWriteMutex,
                 Framework::PropertyValue<
@@ -295,7 +295,7 @@ namespace ESPressio::Platform::Portable::Synchronization {
     /// Standard C++ condition-variable-backed counting semaphore provider.
     class CountingSemaphoreProvider final : public Framework::Provider<
         ESPressio::Platform::Domain,
-        Framework::Provides<
+        Framework::Offers<
             Framework::Offer<
                 ESPressio::Platform::Synchronization::CountingSemaphore,
                 Framework::PropertyValue<
@@ -461,7 +461,7 @@ namespace ESPressio::Platform::Portable::Synchronization {
     /// Standard C++ condition-variable-backed latched signal provider.
     class SignalProvider final : public Framework::Provider<
         ESPressio::Platform::Domain,
-        Framework::Provides<
+        Framework::Offers<
             Framework::Offer<
                 ESPressio::Platform::Synchronization::Signal,
                 Framework::PropertyValue<
@@ -582,7 +582,7 @@ namespace ESPressio::Platform::Portable::Synchronization {
     /// Standard C++ atomic-flag spin-lock provider.
     class SpinLockProvider final : public Framework::Provider<
         ESPressio::Platform::Domain,
-        Framework::Provides<
+        Framework::Offers<
             Framework::Offer<
                 ESPressio::Platform::Synchronization::SpinLock,
                 Framework::PropertyValue<
