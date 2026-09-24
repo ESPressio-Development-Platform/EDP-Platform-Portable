@@ -5,6 +5,7 @@ Every production header under `src/` is represented below. Reference pages prese
 | Source header | Classification | Declarations | Reference |
 |---|---|---:|---|
 | `src/ESPressio_Platform_Portable.hpp` | PUBLIC ENTRY POINT | 0 | [open](Reference-ESPressio-Platform-Portable) |
+| `src/ESPressio_Platform_Portable_ByteOperations.hpp` | PUBLIC ENTRY POINT | 0 | [open](Reference-ESPressio-Platform-Portable-ByteOperations) |
 | `src/concurrency/AtomicWord32Provider.hpp` | PUBLIC PROVIDER / EXTENSION API | 14 | [open](Reference-concurrency-AtomicWord32Provider) |
 | `src/memory/ByteOperationsProvider.hpp` | PUBLIC PROVIDER / EXTENSION API | 5 | [open](Reference-memory-ByteOperationsProvider) |
 | `src/memory/MemoryResourceProvider.hpp` | PUBLIC PROVIDER / EXTENSION API | 5 | [open](Reference-memory-MemoryResourceProvider) |
