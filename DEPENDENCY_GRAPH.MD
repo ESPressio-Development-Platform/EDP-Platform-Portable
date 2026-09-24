@@ -1,5 +1,8 @@
 # EDP-Platform-Portable Dependency Graph
 
+> Revalidated: 2026-09-24 — adding a narrow Arduino-discoverable ByteOperations public entry point changes no dependency edge. Following reintegration, the existing EDP-Memory dependency resolves from permanent `main`.
+
+
 > Revalidated: 2026-09-23 — Composition Framework enhancement migration changes compile-time provider/requirement metadata and validation only; no ESPressio-library dependency edge changed.
 
 ## Library Dependency Tree

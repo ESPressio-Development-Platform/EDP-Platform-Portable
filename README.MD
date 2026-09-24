@@ -23,6 +23,14 @@ EDP-Memory
 
 `ExecutionContext` is intentionally not provided because portable `std::thread` cannot satisfy the Platform requirement for caller-supplied native control and stack storage.
 
+## Public entry points
+
+- `<ESPressio_Platform_Portable.hpp>` imports the complete portable provider set and therefore enforces every provider's target contract, including the always-lock-free requirement of `AtomicWord32Provider`.
+- `<ESPressio_Platform_Portable_ByteOperations.hpp>` imports only the portable `EDP-Memory::ByteOperations` concrete. Use this narrower public entry point when an application needs byte operations without also selecting unrelated portable atomic/synchronization providers.
+
+The narrow entry point exists specifically so Arduino IDE / Arduino CLI can discover this library from a root-level public header without requiring a consumer to include an internal `src/memory/...` path.
+
+
 ## Documentation
 
 - [AtomicWord32 Provider](./docs/ATOMIC-WORD-32.MD) — lock-free four-byte Standard C++ atomic provider.
