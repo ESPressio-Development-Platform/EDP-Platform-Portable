@@ -2,7 +2,7 @@
 
 EDP-Platform-Portable supplies standard C/C++ implementations of portable EDP-Platform and EDP-Memory capabilities.
 
-This Wiki is maintained beside the code on the same branch as the implementation (currently `feature/logging-v1`; merge into `main` only after acceptance). Source code and repository `docs/` remain normative; the Wiki is the internal developer explanation/navigation layer.
+This Wiki is maintained beside the code on the same branch as the implementation. The repository-local Wiki remains authoritative, including after any accepted branch promotion to `main`. Source code and repository `docs/` remain normative; the Wiki is the internal developer explanation/navigation layer.
 
 ## Public entry points
 
