@@ -33,6 +33,15 @@ if(DEFINED EDP_MEMORY_SOURCE_DIR)
     )
 endif()
 
+if(DEFINED EDP_BOUNDED_TOPOLOGY_SOURCE_DIR)
+    get_filename_component(
+        EDP_BOUNDED_TOPOLOGY_SOURCE_DIR
+        "${EDP_BOUNDED_TOPOLOGY_SOURCE_DIR}"
+        ABSOLUTE
+        BASE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/.."
+    )
+endif()
+
 if(NOT DEFINED EDP_PLATFORM_SOURCE_DIR)
     message(FATAL_ERROR "EDP_PLATFORM_SOURCE_DIR must point at an EDP-Platform checkout")
 endif()
@@ -57,6 +66,14 @@ if(NOT EXISTS "${EDP_MEMORY_SOURCE_DIR}/src/ESPressio_Memory.hpp")
     message(FATAL_ERROR "EDP_MEMORY_SOURCE_DIR does not contain src/ESPressio_Memory.hpp")
 endif()
 
+if(NOT DEFINED EDP_BOUNDED_TOPOLOGY_SOURCE_DIR)
+    message(FATAL_ERROR "EDP_BOUNDED_TOPOLOGY_SOURCE_DIR must point at an EDP-BoundedTopology checkout (transitive EDP-Memory test include closure)")
+endif()
+
+if(NOT EXISTS "${EDP_BOUNDED_TOPOLOGY_SOURCE_DIR}/src/ESPressio_BoundedTopology.hpp")
+    message(FATAL_ERROR "EDP_BOUNDED_TOPOLOGY_SOURCE_DIR does not contain src/ESPressio_BoundedTopology.hpp")
+endif()
+
 find_package(Threads REQUIRED)
 
 add_executable(portable_provider_tests PortableProviderTests.cpp)
@@ -70,6 +87,7 @@ foreach(target portable_provider_tests portable_memory_provider_tests)
             ${EDP_PLATFORM_SOURCE_DIR}/src
             ${EDP_SYSTEM_SOURCE_DIR}/src
             ${EDP_MEMORY_SOURCE_DIR}/src
+            ${EDP_BOUNDED_TOPOLOGY_SOURCE_DIR}/src
     )
 
     target_link_libraries(${target} PRIVATE Threads::Threads)
