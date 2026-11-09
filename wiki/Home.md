@@ -2,13 +2,17 @@
 
 EDP-Platform-Portable supplies standard C/C++ implementations of portable EDP-Platform and EDP-Memory capabilities.
 
-This Wiki is maintained beside the code on `main`. Source code and repository `docs/` remain normative; the Wiki is the internal developer explanation/navigation layer.
+This Wiki is maintained beside the code on the same branch as the implementation (currently `feature/logging-v1`; merge into `main` only after acceptance). Source code and repository `docs/` remain normative; the Wiki is the internal developer explanation/navigation layer.
 
-## Public entry point
+## Public entry points
 
 ```cpp
-#include <ESPressio_Platform_Portable.hpp>
+#include <ESPressio_Platform_Portable.hpp> // all concrete providers; enforces AtomicWord32's lock-free contract
+#include <ESPressio_Platform_Portable_ByteOperations.hpp> // only ByteOperations
+#include <ESPressio_Platform_Portable_MemoryResource.hpp> // only MemoryResource
 ```
+
+Use the narrow roots for Arduino/library discovery when the broad provider set is not required. An ESP32 application needing a native Mutex/Signal separately selects an appropriate FreeRTOS concrete; no imported root creates a second platform owner.
 
 ## Dependencies
 
