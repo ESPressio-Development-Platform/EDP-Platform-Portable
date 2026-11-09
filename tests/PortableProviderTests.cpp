@@ -1,5 +1,6 @@
-#include <cassert>
 #include <cstdint>
+
+#include "TestRequire.hpp"
 
 #include <ESPressio_Platform_Portable.hpp>
 
@@ -12,121 +13,121 @@ int main() {
         42U
     );
 
-    assert(
+    EDP_PORTABLE_TEST_REQUIRE(
         word.LoadAcquire() == 42U
     );
 
     Portable::Synchronization::MutexProvider mutex;
 
-    assert(
+    EDP_PORTABLE_TEST_REQUIRE(
         mutex.Acquire(
             Synchronization::WaitTimeout::NoWait()
         ) == Synchronization::LockAcquireResult::Acquired
     );
 
-    assert(
+    EDP_PORTABLE_TEST_REQUIRE(
         mutex.Release() ==
         Synchronization::LockReleaseResult::Released
     );
 
     Portable::Synchronization::RecursiveMutexProvider recursiveMutex;
 
-    assert(
+    EDP_PORTABLE_TEST_REQUIRE(
         recursiveMutex.Acquire(
             Synchronization::WaitTimeout::NoWait()
         ) == Synchronization::LockAcquireResult::Acquired
     );
 
-    assert(
+    EDP_PORTABLE_TEST_REQUIRE(
         recursiveMutex.Acquire(
             Synchronization::WaitTimeout::NoWait()
         ) == Synchronization::LockAcquireResult::Acquired
     );
 
-    assert(
+    EDP_PORTABLE_TEST_REQUIRE(
         recursiveMutex.Release() ==
         Synchronization::LockReleaseResult::Released
     );
 
-    assert(
+    EDP_PORTABLE_TEST_REQUIRE(
         recursiveMutex.Release() ==
         Synchronization::LockReleaseResult::Released
     );
 
     Portable::Synchronization::ReadWriteMutexProvider readWriteMutex;
 
-    assert(
+    EDP_PORTABLE_TEST_REQUIRE(
         readWriteMutex.AcquireRead(
             Synchronization::WaitTimeout::NoWait()
         ) == Synchronization::LockAcquireResult::Acquired
     );
 
-    assert(
+    EDP_PORTABLE_TEST_REQUIRE(
         readWriteMutex.ReleaseRead() ==
         Synchronization::LockReleaseResult::Released
     );
 
-    assert(
+    EDP_PORTABLE_TEST_REQUIRE(
         readWriteMutex.AcquireWrite(
             Synchronization::WaitTimeout::NoWait()
         ) == Synchronization::LockAcquireResult::Acquired
     );
 
-    assert(
+    EDP_PORTABLE_TEST_REQUIRE(
         readWriteMutex.ReleaseWrite() ==
         Synchronization::LockReleaseResult::Released
     );
 
     Portable::Synchronization::CountingSemaphoreProvider semaphore;
 
-    assert(
+    EDP_PORTABLE_TEST_REQUIRE(
         semaphore.Initialize(
             2U,
             1U
         ) == Synchronization::SemaphoreInitializationResult::Succeeded
     );
 
-    assert(
+    EDP_PORTABLE_TEST_REQUIRE(
         semaphore.Acquire(
             Synchronization::WaitTimeout::NoWait()
         ) == Synchronization::SemaphoreAcquireResult::Acquired
     );
 
-    assert(
+    EDP_PORTABLE_TEST_REQUIRE(
         semaphore.Acquire(
             Synchronization::WaitTimeout::NoWait()
         ) == Synchronization::SemaphoreAcquireResult::TimedOut
     );
 
-    assert(
+    EDP_PORTABLE_TEST_REQUIRE(
         semaphore.Release() ==
         Synchronization::SemaphoreReleaseResult::Released
     );
 
-    assert(
+    EDP_PORTABLE_TEST_REQUIRE(
         semaphore.ReleaseFromInterrupt() ==
         Synchronization::SemaphoreReleaseResult::UnsupportedInterruptContext
     );
 
     Portable::Synchronization::SignalProvider signal;
 
-    assert(
+    EDP_PORTABLE_TEST_REQUIRE(
         signal.Notify() ==
         Synchronization::SignalNotifyResult::Signaled
     );
 
-    assert(
+    EDP_PORTABLE_TEST_REQUIRE(
         signal.Notify() ==
         Synchronization::SignalNotifyResult::Signaled
     );
 
-    assert(
+    EDP_PORTABLE_TEST_REQUIRE(
         signal.Wait(
             Synchronization::WaitTimeout::NoWait()
         ) == Synchronization::SignalWaitResult::Signaled
     );
 
-    assert(
+    EDP_PORTABLE_TEST_REQUIRE(
         signal.Wait(
             Synchronization::WaitTimeout::NoWait()
         ) == Synchronization::SignalWaitResult::TimedOut
@@ -135,12 +136,12 @@ int main() {
     Portable::Synchronization::SpinLockProvider spinLock;
     spinLock.Acquire();
 
-    assert(
+    EDP_PORTABLE_TEST_REQUIRE(
         spinLock.Release() ==
         Synchronization::SpinLockReleaseResult::Released
     );
 
-    assert(
+    EDP_PORTABLE_TEST_REQUIRE(
         spinLock.AcquireFromInterrupt() ==
         Synchronization::SpinLockAcquireResult::UnsupportedInterruptContext
     );

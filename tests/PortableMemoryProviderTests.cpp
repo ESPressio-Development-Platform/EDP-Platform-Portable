@@ -1,7 +1,8 @@
 #include <array>
-#include <cassert>
 #include <cstddef>
 #include <cstdint>
+
+#include "TestRequire.hpp"
 
 #include <ESPressio_Platform_Portable_ByteOperations.hpp>
 #include <ESPressio_Platform_Portable_MemoryResource.hpp>
@@ -36,7 +37,7 @@ namespace Test {
             source.size()
         );
 
-        assert(
+        EDP_PORTABLE_TEST_REQUIRE(
             bytes.CompareBytes(
                 target.data(),
                 source.data(),
@@ -49,8 +50,8 @@ namespace Test {
             target.data(),
             7U
         );
-        assert(target[1U] == 1U);
-        assert(target[7U] == 7U);
+        EDP_PORTABLE_TEST_REQUIRE(target[1U] == 1U);
+        EDP_PORTABLE_TEST_REQUIRE(target[7U] == 7U);
 
         bytes.FillBytes(
             target.data(),
@@ -58,12 +59,12 @@ namespace Test {
             target.size()
         );
         for (const auto value : target)
-            assert(value == 0x5AU);
+            EDP_PORTABLE_TEST_REQUIRE(value == 0x5AU);
 
         bytes.CopyBytes(nullptr, nullptr, 0U);
         bytes.MoveBytes(nullptr, nullptr, 0U);
         bytes.FillBytes(nullptr, 0U, 0U);
-        assert(bytes.CompareBytes(nullptr, nullptr, 0U) == Memory::ByteComparison::Equal);
+        EDP_PORTABLE_TEST_REQUIRE(bytes.CompareBytes(nullptr, nullptr, 0U) == Memory::ByteComparison::Equal);
 
         PortableMemory::MemoryResourceProvider resource;
         Memory::MemoryBlock unchanged{
@@ -72,46 +73,46 @@ namespace Test {
             8U
         };
 
-        assert(
+        EDP_PORTABLE_TEST_REQUIRE(
             resource.Allocate(
                 0U,
                 8U,
                 unchanged
             ) == Memory::MemoryAllocationResult::InvalidSize
         );
-        assert(unchanged.Size == 7U);
+        EDP_PORTABLE_TEST_REQUIRE(unchanged.Size == 7U);
 
-        assert(
+        EDP_PORTABLE_TEST_REQUIRE(
             resource.Allocate(
                 32U,
                 3U,
                 unchanged
             ) == Memory::MemoryAllocationResult::InvalidAlignment
         );
-        assert(unchanged.Size == 7U);
+        EDP_PORTABLE_TEST_REQUIRE(unchanged.Size == 7U);
 
         Memory::MemoryBlock block{};
-        assert(
+        EDP_PORTABLE_TEST_REQUIRE(
             resource.Allocate(
                 128U,
                 64U,
                 block
             ) == Memory::MemoryAllocationResult::Succeeded
         );
-        assert(block.Address != nullptr);
-        assert(block.Size == 128U);
-        assert(block.Alignment >= 64U);
-        assert(
+        EDP_PORTABLE_TEST_REQUIRE(block.Address != nullptr);
+        EDP_PORTABLE_TEST_REQUIRE(block.Size == 128U);
+        EDP_PORTABLE_TEST_REQUIRE(block.Alignment >= 64U);
+        EDP_PORTABLE_TEST_REQUIRE(
             reinterpret_cast<std::uintptr_t>(block.Address) %
             block.Alignment == 0U
         );
 
-        assert(
+        EDP_PORTABLE_TEST_REQUIRE(
             resource.Release(block) ==
             Memory::MemoryReleaseResult::Released
         );
 
-        assert(
+        EDP_PORTABLE_TEST_REQUIRE(
             resource.Release(Memory::MemoryBlock{}) ==
             Memory::MemoryReleaseResult::InvalidBlock
         );

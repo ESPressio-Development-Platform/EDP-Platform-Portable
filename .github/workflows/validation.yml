@@ -17,7 +17,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        compiler: [g++, clang++]
+        compiler: [g++, clang++]\n        configuration: [Debug, Release]
     steps:
       - uses: actions/checkout@v4
       - name: Checkout explicit EDP provider and transitive Memory test sources
@@ -31,7 +31,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          cmake -S tests -B /tmp/edp-portable-host -DCMAKE_BUILD_TYPE=Debug \
+          cmake -S tests -B /tmp/edp-portable-host -DCMAKE_BUILD_TYPE=\"\${{ matrix.configuration }}\" \
             -DCMAKE_CXX_COMPILER="${{ matrix.compiler }}" \
             -DEDP_SYSTEM_SOURCE_DIR="$GITHUB_WORKSPACE/../EDP-System" \
             -DEDP_PLATFORM_SOURCE_DIR="$GITHUB_WORKSPACE/../EDP-Platform" \
