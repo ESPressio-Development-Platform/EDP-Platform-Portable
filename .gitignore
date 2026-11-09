@@ -449,3 +449,9 @@ $RECYCLE.BIN/
 .pio/
 .pioenvs/
 .piolibdeps/
+
+# PioArduino ESP-IDF build-generated project glue and device-specific SDK state
+# (source-controlled defaults remain sdkconfig.defaults when applicable)
+demos/*/PlatformIO_ESP-IDF/CMakeLists.txt
+demos/*/PlatformIO_ESP-IDF/src/CMakeLists.txt
+demos/*/PlatformIO_ESP-IDF/sdkconfig.*
