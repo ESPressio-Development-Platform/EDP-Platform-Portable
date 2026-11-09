@@ -10,7 +10,7 @@
         if (!(expression)) { \
             std::fprintf( \
                 stderr, \
-                "EDP-Platform-Portable test failed at %s:%d: %s\\n", \
+                "EDP-Platform-Portable test failed at %s:%d: %s\n", \
                 __FILE__, \
                 __LINE__, \
                 #expression \
