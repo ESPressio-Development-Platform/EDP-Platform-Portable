@@ -2,7 +2,7 @@
 
 **Classification:** PUBLIC ENTRY POINT (additive convenience import; no new runtime provider or implementation).
 
-**Source:** [repository-local public header](../src/ESPressio_Platform_Portable_MemoryResource.hpp).
+**Source:** [exact public header source](https://github.com/ESPressio-Development-Platform/EDP-Platform-Portable/blob/2bcb9deea411700c32eabf20cbbcb776c96bf6ec/src/ESPressio_Platform_Portable_MemoryResource.hpp).
 
 ## Purpose and contract
 
