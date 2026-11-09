@@ -33,3 +33,7 @@ There is no Portable `ExecutionContext`: `std::thread` cannot satisfy EDP-Platfo
 The provider implementations compile against EDP-Platform and EDP-Memory provider-trait contracts. Those Detail traits are internal cross-repository APIs even though they are not ordinary application API.
 
 > Dependency contract audit baseline: `0611f72457a3b90281ce5ca2ea1811616ba0d7dd` (`main`).
+
+## Narrow MemoryResource public import (9 November 2026)
+
+The optional public header import `ESPressio_Platform_Portable_MemoryResource.hpp` contains only `memory/MemoryResourceProvider.hpp`. It does not create a third package dependency, another provider, or an automatic Composition selection. Root-level availability supports Arduino IDE/CLI discovery while leaving `AtomicWord32` and Portable synchronization's own (potentially unsupported) compilation constraints unaffected. A consuming application selecting FreeRTOS Mutex/Signal must explicitly name `EDP-Platform-FreeRTOS` as its separate concrete dependency; Portable does not acquire a dependency on FreeRTOS. The complete graph remains acyclic, with mandatory Platform and Memory only.
