@@ -5,6 +5,8 @@
 
 > Revalidated: 2026-09-23 — Composition Framework enhancement migration changes compile-time provider/requirement metadata and validation only; no ESPressio-library dependency edge changed.
 
+ > Revalidated: 2026-11-09 — adding the narrow root `ESPressio_Platform_Portable_MemoryResource.hpp` changes no package or Composition dependency. The entry point merely exposes the existing concrete MemoryResource provider without importing the portable atomics/synchronization bundle. Native ESP32 applications may separately choose `EDP-Platform-FreeRTOS` when requiring Mutex/Signal, an **application-owned conditional concrete** rather than an EDP-Platform-Portable dependency.
+
 ## Library Dependency Tree
 
 ```text
