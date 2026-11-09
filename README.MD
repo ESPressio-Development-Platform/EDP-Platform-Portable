@@ -55,11 +55,11 @@ See [DEPENDENCY_GRAPH.MD](./DEPENDENCY_GRAPH.MD).
 
 ## Demos
 
-Buildable demonstrations are provided under [`./demos`](./demos) for Portable atomic, synchronization, byte-operation, and raw-memory-resource providers. Each logical demo provides Arduino IDE, PlatformIO Arduino, and PlatformIO ESP-IDF surfaces.
+Demonstration projects are provided under [the demo index](./demos/README.MD) for Portable atomic, synchronization, byte-operation and raw-memory-resource providers. Every family supplies Arduino IDE, PlatformIO Arduino and PlatformIO ESP-IDF source variants. Provider target constraints must be enforced: an unsupported lock-free atomic or exception-enabled synchronization composition must fail rather than be silently treated as qualified.
 
 ## Testing
 
-Host tests cover the Platform providers plus the Memory byte/resource provider contracts and behavior. Portable Memory providers are suitable for host sanitizer validation because they use only Standard C/C++ facilities.
+Host tests cover the Platform providers plus the Memory byte/resource provider contracts and behaviour. The narrow root imports are independently exercised in the Memory host test; the `memory-resource-basic` PlatformIO Arduino and ESP-IDF examples compile on the authorised RPI400 execution appliance. The [maintained host and target validation workflow](./.github/workflows/validation.yml) is included for reproducibility, but an Actions workflow's existence is not evidence of execution. Portable Memory providers are suitable for host sanitizer validation because they use Standard C/C++ facilities.
 
 ## C++ Language Baseline
 
