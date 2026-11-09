@@ -26,9 +26,10 @@ EDP-Memory
 ## Public entry points
 
 - `<ESPressio_Platform_Portable.hpp>` imports the complete portable provider set and therefore enforces every provider's target contract, including the always-lock-free requirement of `AtomicWord32Provider`.
-- `<ESPressio_Platform_Portable_ByteOperations.hpp>` imports only the portable `EDP-Memory::ByteOperations` concrete. Use this narrower public entry point when an application needs byte operations without also selecting unrelated portable atomic/synchronization providers.
+- `<ESPressio_Platform_Portable_ByteOperations.hpp>` imports only the portable `EDP-Memory::ByteOperations` concrete, without activating unrelated atomic or synchronization provider constraints.
+- `<ESPressio_Platform_Portable_MemoryResource.hpp>` imports **only** the existing portable `EDP-Memory::MemoryResource` concrete. Arduino IDE/CLI and PlatformIO application code can discover the library through this public root header without importing `AtomicWord32` or Portable Synchronization. On ESP32, select separately supported FreeRTOS Mutex/Signal providers when needed; portable synchronization uses Standard C++ exceptions that ESP-IDF builds may disable.
 
-The narrow entry point exists specifically so Arduino IDE / Arduino CLI can discover this library from a root-level public header without requiring a consumer to include an internal `src/memory/...` path.
+The narrow entry points exist so Arduino IDE / Arduino CLI can discover this library from a root-level public header without requiring a consumer to include an internal `src/memory/...` path.
 
 
 ## Documentation
